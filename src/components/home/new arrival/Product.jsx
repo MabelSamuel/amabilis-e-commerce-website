@@ -50,7 +50,7 @@ function Product() {
               className="h-3/5 relative border shadow-sm md:h-[27rem] sm:h-[27rem] "
               onMouseEnter={() => handleShow(items.id)}
               onMouseLeave={() => setIsShow(false)}
-              onClick={() => setIsShow(false)}
+              onClick={() => handleShow(items.id)}
             >
               <img
                 src={items.image}
@@ -64,23 +64,23 @@ function Product() {
               /> */}
               {isShow === items.id && (
                 <div className=" flex absolute top-2/4 w-full justify-center ">
-                  <div
+                  <button
                     className="size-8 flex justify-center items-center bg-lilac rounded-full mr-2 hover:bg-black md:size-12 sm:size-12"
                     onClick={() => addToCart(items)}
                   >
                     <PiShoppingCartFill className="text-white size-5 md:size-8 sm:size-8 " />
-                  </div>
-                  <div
+                  </button>
+                  <button
                     className="size-8 flex justify-center items-center bg-lilac rounded-full mr-2 hover:bg-black md:size-12 sm:size-12"
                     onClick={() => handleProductModal(items.id)}
                   >
                     <GrFormView className="text-white size-5 md:size-10 sm:size-10" />
-                  </div>
-                  <div className="size-8 flex justify-center items-center bg-lilac rounded-full hover:bg-black md:size-12 sm:size-12"
+                  </button>
+                  <button className="size-8 flex justify-center items-center bg-lilac rounded-full hover:bg-black md:size-12 sm:size-12"
                   onClick={()=> addToWishList(items)}
                   >
                     <CiHeart className="text-white size-5 md:size-10 sm:size-10" />
-                  </div>
+                  </button>
                 </div>
               )}
               {isProductModal === items.id && (

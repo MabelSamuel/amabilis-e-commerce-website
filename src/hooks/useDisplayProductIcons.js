@@ -6,7 +6,7 @@ export const useDisplayProductIcons = () => {
 
   // function to handle display of product wishlist, addtocart and view icons
   const handleShow = (productId) => {
-    setIsShow(productId);
+    setIsShow(isShow === productId ? null: productId);
   };
   
   return {

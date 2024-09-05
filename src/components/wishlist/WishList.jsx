@@ -51,19 +51,19 @@ function WishList() {
                   <td className=" w-[12.5%] text-center ">$ {item.price}</td>
                   <td className=" w-[12.5%] ">
                     <div className=" flex border ">
-                      <div
+                      <button
                         className=" inline text-center cursor-pointer w-3/12 border-r "
                         onClick={() => decrementItemQuantity(item.id)}
                       >
                         -
-                      </div>
+                      </button>
                       <span className="w-1/2 text-center">{item.quantity}</span>
-                      <div
+                      <button
                         className=" inline text-center cursor-pointer w-3/12 border-l "
                         onClick={() => incrementItemQuantity(item.id)}
                       >
                         +
-                      </div>
+                      </button>
                     </div>
                   </td>
                   <td className=" w-[12.5%] text-center ">

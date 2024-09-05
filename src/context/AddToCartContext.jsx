@@ -8,12 +8,8 @@ export const AddToCartContextProvider = ({ children }) => {
 
   useEffect(() => {
     // Update cartCount whenever cart changes
-    const totalQuantity = cart.reduce(
-      (total, item) => total + item.quantity,
-      0
-    );
-    setCartCount(totalQuantity);
-  }, [cart]);
+    setCartCount(cart.length);
+  }, [cart.length]);
 
   const addToCart = (newItem) => {
     setCart((prevCart) => {
@@ -29,13 +25,11 @@ export const AddToCartContextProvider = ({ children }) => {
         return [...prevCart, { ...newItem, quantity: newItem.quantity || 1 }];
       }
     });
-    setCartCount((prevCartCount) => prevCartCount + 1);
   };
 
   function removeFromCart(id) {
     const updatedCart = cart.filter((item) => item.id !== id);
     setCart(updatedCart);
-    setCartCount((prevCartCount) => prevCartCount - 1);
   }
 
   // Function to increment item quantity
@@ -60,7 +54,7 @@ export const AddToCartContextProvider = ({ children }) => {
 
   // Function to calculate total price for each item
   function getTotalPriceForItem(item) {
-    return item.price * item.quantity;
+    return Number((item.price * item.quantity).toFixed(2));
   }
 
   // Function to calculate the total price of the whole cart
@@ -71,7 +65,6 @@ export const AddToCartContextProvider = ({ children }) => {
   // function to clear cart
   function clearCart() {
     setCart([]);
-    setCartCount(0)
   }
 
   return (

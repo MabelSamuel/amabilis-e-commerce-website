@@ -45,7 +45,7 @@ function ProductGrid() {
             className="h-[70%] relative md:h-4/5 sm:h-4/5"
             onMouseEnter={() => handleShow(items.id)}
             onMouseLeave={() => setIsShow(false)}
-            onClick={() => setIsShow(false)}
+            onClick={() => handleShow(items.id)}
           >
             <img
               src={items.image}
@@ -60,32 +60,32 @@ function ProductGrid() {
             {isShow === items.id && (
               <div className=" z-50 flex absolute bottom-0 w-full h-12 ">
                 <div className=" bg-lilac w-1/4 h-full flex justify-center hover:bg-black md:w-[15%] sm:w-[15%] ">
-                  <div
+                  <button
                     className=" flex justify-center items-center cursor-pointer  "
                     onClick={() => addToWishList(items)}
                   >
                     {" "}
                     <CiHeart size={25} className="text-white" />{" "}
-                  </div>
+                  </button>
                 </div>
                 <div className=" bg-lilac w-2/4 h-full border-x border-slate-100 flex justify-center cursor-pointer hover:bg-black md:w-[70%] sm:w-[70%] ">
-                  <div
+                  <button
                     className=" flex justify-center items-center text-white "
                     onClick={() => addToCart(items)}
                   >
                     {" "}
                     <PiShoppingCartFill className=" m-1 text-white " />
                     Add to Cart{" "}
-                  </div>
+                  </button>
                 </div>
                 <div className=" bg-lilac w-1/4 h-full flex justify-center cursor-pointer hover:bg-black md:w-[15%] sm:w-[15%] ">
-                  <div
+                  <button
                     className=" flex justify-center items-center cursor-pointer text-white "
                     onClick={() => handleProductModal(items.id)}
                   >
                     {" "}
                     <GrFormView size={30} />{" "}
-                  </div>
+                  </button>
                 </div>
               </div>
             )}

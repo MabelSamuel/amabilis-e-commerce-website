@@ -79,7 +79,7 @@ function TeamMembers() {
               className="h-80 relative sm:h-[30rem]"
               onMouseEnter={() => handleShow(member.id)}
               onMouseLeave={() => setIsShow(false)}
-              onClick={() => setIsShow(false)}
+              onClick={() => handleShow(member.id)}
             >
               <img
                 src={member.image}
