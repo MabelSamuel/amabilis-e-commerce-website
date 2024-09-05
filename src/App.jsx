@@ -1,5 +1,5 @@
 import React from 'react';
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
 // layout 
 import Root from './layouts/Root';
 // pages
@@ -16,7 +16,7 @@ import Login from './components/login-register/Login';
 import Register from './components/login-register/Register';
 import AboutPage from './pages/AboutPage';
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   createRoutesFromElements(
     <Route path='/' element = { <Root /> } >
       <Route index element = {<HomePage/>} />
