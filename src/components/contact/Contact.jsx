@@ -38,7 +38,7 @@ function Contact() {
   return (
     <div className=' flex -mx-1 h-full sm:flex-col sm:h-fit '>
         <div className=' px-1 w-[30%] h-full md:pr-4 md:w-2/5 sm:w-full sm:mb-8'>
-            <div className=' bg-slate-400 pt-32 pr-[4.375rem] pb-[7.25rem] pl-[5.525rem] h-full md:px-6 sm:py-16 sm:pl-16 '>
+            <div className=' bg-gray-200 pt-32 pr-[4.375rem] pb-[7.25rem] pl-[5.525rem] h-full md:px-6 sm:py-16 sm:pl-16 '>
                 <div className='flex center mb-10'>
                     <div className=' mr-5 flex items-center '>
                         <PiPhoneCallFill />
@@ -83,10 +83,10 @@ function Contact() {
         </div>
 
         <div className=' px-1 w-[70%] h-full md:w-3/5 sm:w-full'>
-            <div className=' bg-slate-400 py-[3.125rem] px-28 h-full md:px-8 sm:px-4 '>
+            <div className=' bg-gray-200 py-[3.125rem] px-28 h-full md:px-8 sm:px-4 '>
                 <h2 className=' mb-16 text-2xl font-medium sm:mb-8'>Get in Touch</h2>
                 <form onSubmit={handleSubmit(onSubmit)} className='sm:text-sm'>
-                    <input type="text" name='name' placeholder='Name*' {...register("name")} className=' bg-transparent w-[44%] border h-10 py-1 px-4 mb-8 mr-8 text-black outline-white placeholder:text-black md:w-full sm:w-full ' />
+                    <input type="text" name='name' placeholder='Name*' {...register("name")} className=' bg-transparent w-[44%] border border-black h-10 py-1 px-4 mb-8 mr-8 text-black outline-white placeholder:text-black md:w-full sm:w-full ' />
                     {errors.name && (
                         <p className='bg-red-500'>{errors.message.message}</p>
                     )}

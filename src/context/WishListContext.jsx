@@ -45,7 +45,7 @@ export const WishListContextProvider = ({children}) => {
 
   // Function to calculate total price for each item
   function getTotalPriceForItem(item) {
-    return item.price * item.quantity;
+    return Number((item.price * item.quantity).toFixed(2));
   }
 
   const removeFromWishList = (id) =>{

@@ -30,7 +30,7 @@ function Icons() {
             className="hover:stroke-lilac stroke-1 relative"
           />
         {isOpen === "search" && (
-          <div className="absolute bg-white shadow-md z-50 p-3.5 right-28 top-[5.75rem] min-w-60"
+          <div className="absolute bg-white shadow-md z-50 p-3.5 right-28 top-[5.75rem] min-w-60 sm:top-[4.2rem] sm:right-12"
           onClick={handleDropdownClick}
           >
             <form className="relative">
@@ -56,7 +56,7 @@ function Icons() {
             className=" hover:stroke-lilac stroke-1 relative "
           />{" "}
         {isOpen === "contact" && (
-          <div className=" absolute bg-white shadow-md pt-2 px-3 pb-3 text-left w-32 z-50 transition-all duration-300 ease-in flex items-center ">
+          <div className=" absolute bg-white shadow-md pt-2 px-3 pb-3 text-left w-32 z-50 transition-all duration-300 ease-in flex items-center top-[5.75rem] sm:top-[4.2rem] sm:right-0 ">
             <ul className="text-sm">
               <li className="hover:text-lilac ">
                 {" "}
