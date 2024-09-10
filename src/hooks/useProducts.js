@@ -9,9 +9,9 @@ export const fetchProducts = async() => {
 
 // custom hook
 export const useProducts = () =>{
-    const {data:products, isLoading, error} = useQuery({
+    const {data:products, isLoading, error, refetch} = useQuery({
         queryKey:['products'], 
         queryFn: fetchProducts
     }); 
-    return { products, isLoading, error }
+    return { products, isLoading, error, refetch }
 };

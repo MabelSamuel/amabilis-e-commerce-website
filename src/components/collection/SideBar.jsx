@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function SideBar() {
   return (
-    <div className=" px-4 py-6 border w-1/4 md:w-full sm:w-full ">
+    <div className=" px-4 py-6 rounded-lg border w-1/4 md:w-full sm:w-full ">
       <div className=" mr-8 ">
         <h4 className=" font-medium leading-6 ">Search</h4>
         <form action="" className=" mb-12 mt-6 relative ">

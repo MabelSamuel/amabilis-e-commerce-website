@@ -5,6 +5,7 @@ export const AddToCartContext = createContext(null);
 export const AddToCartContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [cartCount, setCartCount] = useState(0);
+  const [cartMessage, setCartMessage] = useState("");
 
   useEffect(() => {
     // Update cartCount whenever cart changes
@@ -18,18 +19,22 @@ export const AddToCartContextProvider = ({ children }) => {
       if (alreadyInCart) {
         return prevCart.map((item) =>
           item.id === newItem.id
-            ? { ...item, quantity: item.quantity + (newItem.quantity || 1 ) }
+            ? { ...item, quantity: item.quantity + (newItem.quantity || 1) }
             : item
         );
       } else {
         return [...prevCart, { ...newItem, quantity: newItem.quantity || 1 }];
       }
     });
+    setCartMessage("Item added to cart");
+    setTimeout(() => setCartMessage(""), 3000);
   };
 
   function removeFromCart(id) {
     const updatedCart = cart.filter((item) => item.id !== id);
     setCart(updatedCart);
+    setCartMessage("Item removed from cart");
+    setTimeout(() => setCartMessage(""), 3000);
   }
 
   // Function to increment item quantity
@@ -65,6 +70,8 @@ export const AddToCartContextProvider = ({ children }) => {
   // function to clear cart
   function clearCart() {
     setCart([]);
+    setCartMessage("Cart is empty");
+    setTimeout(() => setCartMessage(""), 3000);
   }
 
   return (
@@ -80,7 +87,8 @@ export const AddToCartContextProvider = ({ children }) => {
         decrementItemQuantity,
         getTotalPriceForItem,
         getTotalPriceOfCart,
-        clearCart
+        clearCart,
+        cartMessage
       }}
     >
       {children}

@@ -20,7 +20,7 @@ import { WishListContext } from '../../../context/WishListContext'
 
 
 function Product() {
-  const { products, isLoading, error } = useProducts();
+  const { products, isLoading, error, refetch } = useProducts();
 
   // custom hook to display the wishlist, cart and view icons
   const { isShow, setIsShow, handleShow } = useDisplayProductIcons();
@@ -33,11 +33,26 @@ function Product() {
   const { addToWishList } = useContext(WishListContext);
 
   if (isLoading) {
-    return <div>Data is loading</div>;
+    return (
+      <div className="fixed inset-0 z-[60] flex justify-center items-center bg-white ">
+        <div className="w-12 h-12 aspect-square rounded-full border-8 border-lilac border-t-transparent animate-spin"></div>
+      </div>
+    );
   }
 
   if (error) {
-    return <p>Error: {error.message} </p>;
+    return (
+      <div className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-white">
+        <h1 className="text-3xl font-bold text-red-500 mb-4">Something went wrong</h1>
+        <p className="text-gray-600 mb-6">Error: {error.message}</p>
+        <button
+          className="bg-lilac text-white py-2 px-4 rounded hover:bg-lilac-dark transition duration-300"
+          onClick={() => refetch()}
+        >
+          Refresh Page
+        </button>
+      </div>
+    );
   }
 
   return (
