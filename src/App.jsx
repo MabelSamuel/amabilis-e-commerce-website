@@ -15,6 +15,7 @@ import ProductList from './components/collection/ProductList';
 import Login from './components/login-register/Login';
 import Register from './components/login-register/Register';
 import AboutPage from './pages/AboutPage';
+import CheckOutPage from './pages/CheckOutPage';
 
 const router = createHashRouter(
   createRoutesFromElements(
@@ -34,6 +35,7 @@ const router = createHashRouter(
         <Route path='login' element= { <Login/> } />
         <Route path='register' element= { <Register/> } />
       </Route>
+      <Route path='checkout' element={<CheckOutPage/>}/>
       <Route path='*' element={<NotFoundPage/>} />
     </Route>
   )

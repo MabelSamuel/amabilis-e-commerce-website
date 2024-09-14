@@ -109,6 +109,7 @@ function Cart() {
                 ))}
               </tbody>
             </table>
+          </div>
             <div className="mt-10 flex justify-between sm:flex-col sm:text-sm">
               <button
                 className="bg-gray-200 rounded-full py-4 px-10 uppercase font-medium hover:bg-lilac sm:mb-4"
@@ -123,7 +124,6 @@ function Cart() {
                 Clear Shopping cart
               </button>
             </div>
-          </div>
           <div className="mt-12 flex gap-8 md:grid md:grid-cols-2 sm:flex-col">
             <CartTax />
             <CartCoupon />
