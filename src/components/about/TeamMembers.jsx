@@ -67,7 +67,7 @@ function TeamMembers() {
         <h2 className=' font-semibold text-3xl pb-4 relative before:absolute before:bg-black before:content-[""] before:h-1 before:w-16 before:left-0 before:right-0 before:bottom-0 before:my-0 before:mx-auto '>
           Team Members
         </h2>
-        <p className="pt-6">
+        <p className="pt-6 sm:text-center">
           Team members that give sustainability, quality and customer
           satisfaction
         </p>

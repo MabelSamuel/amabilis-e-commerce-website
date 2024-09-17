@@ -57,22 +57,18 @@ function Icons() {
           />{" "}
         {isOpen === "contact" && (
           <div className=" absolute bg-white shadow-md pt-2 px-3 pb-3 text-left w-32 z-50 transition-all duration-300 ease-in flex items-center top-[5.75rem] sm:top-[4.2rem] sm:right-0 ">
-            <ul className="text-sm">
+            <ul className="text-sm *:mb-2">
               <li className="hover:text-lilac ">
                 {" "}
-                <NavLink to="login-register/login">Login</NavLink>{" "}
+                <NavLink to="login-register/login" className={({ isActive }) => isActive ? "text-lilac": "text-black"}>Login</NavLink>{" "}
               </li>
               <li className="hover:text-lilac ">
                 {" "}
-                <NavLink to="login-register/register">Register</NavLink>{" "}
-              </li>
-              <li className=" hover:text-lilac ">
-                {" "}
-                <NavLink to="wishlist">Wishlist</NavLink>{" "}
+                <NavLink to="login-register/register" className={({ isActive }) => isActive ? "text-lilac": "text-black"}>Register</NavLink>{" "}
               </li>
               <li className="hover:text-lilac ">
                 {" "}
-                <NavLink>My Account</NavLink>{" "}
+                <NavLink to="" className={({ isActive }) => isActive ? "text-lilac": "text-black"}>My Account</NavLink>{" "}
               </li>
             </ul>
           </div>

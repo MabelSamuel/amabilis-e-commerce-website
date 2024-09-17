@@ -22,14 +22,14 @@ function ProductList() {
           key={items.id}
           className=" h-[31rem] flex border shadow-md sm:flex-col sm:h-fit "
         >
-          <div className="h-[31rem] w-[35%] border shadow-sm flex justify-center sm:w-full sm:h-[31rem] ">
+          <div className="h-[31rem] w-[35%] border shadow-sm flex justify-center sm:w-full sm:h-[20rem] ">
             <img
               src={items.image}
               alt={items.title}
-              className=" h-1/2 py-5 px-4  sm:h-full"
+              className=" h-1/2 py-5 px-4 sm:h-full"
             />
           </div>
-          <div className=" h-[31rem] w-[65%] py-5 mx-4 sm:w-full sm:pr-4 ">
+          <div className=" h-[31rem] w-[65%] py-5 mx-4 sm:w-full sm:pr-4 sm:h-fit ">
             <h2 className=" text-2xl mb-3 ">{items.title}</h2>
             <p className=" text-red-500 text-lg mb-2 ">${items.price}</p>
             <p className="mb-3 flex">

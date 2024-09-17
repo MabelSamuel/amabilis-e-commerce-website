@@ -1,11 +1,12 @@
 import React from 'react'
 
 const BillingDetails = () => {
+    
   return (
     <>
-    <h3>Billing Details</h3>
+    <h3 className='font-medium text-xl'>Billing Details</h3>
     <form action="">
-        <div className='flex gap-8 mt-4'>
+        <div className='flex gap-8 mt-4 sm:flex-col'>
             <div className='flex flex-col w-full'>
                 <label htmlFor="">First Name</label>
                 <input type="text" className='border border-gray-200 h-12 p-3 mt-2 outline-lilac md:text-sm sm:text-sm ' />
@@ -34,7 +35,7 @@ const BillingDetails = () => {
         <label htmlFor="">Town / City</label>
             <input type="text" className='border border-gray-200 h-12  p-3 mt-2 outline-lilac md:text-sm sm:text-sm ' />
         </div>
-        <div className='flex gap-8 mt-4'>
+        <div className='flex gap-8 mt-4 sm:flex-col'>
             <div className='flex flex-col w-full'>
                 <label htmlFor="">State / County</label>
                 <input type="text" className='border border-gray-200 h-12 p-3 mt-2 outline-lilac md:text-sm sm:text-sm ' />
@@ -44,7 +45,7 @@ const BillingDetails = () => {
                 <input type="text" className='border border-gray-200 h-12  p-3 mt-2 outline-lilac md:text-sm sm:text-sm ' />
             </div>
         </div>
-        <div className='flex gap-8 mt-4'>
+        <div className='flex gap-8 mt-4 sm:flex-col'>
             <div className='flex flex-col w-full'>
                 <label htmlFor="">Phone</label>
                 <input type="number" className='border border-gray-200 h-12 p-3 mt-2 outline-lilac md:text-sm sm:text-sm ' />
