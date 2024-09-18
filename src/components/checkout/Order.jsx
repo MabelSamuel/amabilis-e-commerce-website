@@ -12,7 +12,7 @@ const Order = ({ cart, getTotalPriceForItem, getTotalPriceOfCart }) => {
         </div>
         <div className='py-4 border-b border-dark-gray '>
             {cart?.map((items)=> (
-              <ul className='flex justify-between *:mb-4'>
+              <ul key={items.id} className='flex justify-between *:mb-4'>
                 <li>{items.title} X {items.quantity}</li>
                 <li>${getTotalPriceForItem(items)}</li>
               </ul>
