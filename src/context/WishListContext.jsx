@@ -1,12 +1,19 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { AddToCartContext } from "./AddToCartContext";
 
 export const WishListContext = createContext(null);
 
 export const WishListContextProvider = ({ children }) => {
-  const [wishList, setWishList] = useState([]);
+  const [wishList, setWishList] = useState(()=>{
+    const savedWishList = localStorage.getItem("wishList");
+    return savedWishList ? JSON.parse(savedWishList) : [];
+  });
   const { addToCart } = useContext(AddToCartContext);
   const [wishListMessage, setWishListMessage] = useState("");
+
+  useEffect(()=>{
+    localStorage.setItem("wishList", JSON.stringify(wishList))
+  }, [wishList])
 
   const addToWishList = (newItem) => {
     setWishList((prevWishList) => {

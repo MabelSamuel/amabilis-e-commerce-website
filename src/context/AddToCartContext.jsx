@@ -3,14 +3,19 @@ import { createContext, useEffect, useState } from "react";
 export const AddToCartContext = createContext(null);
 
 export const AddToCartContextProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(()=>{
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
   const [cartCount, setCartCount] = useState(0);
   const [cartMessage, setCartMessage] = useState("");
 
   useEffect(() => {
     // Update cartCount whenever cart changes
     setCartCount(cart.length);
-  }, [cart.length]);
+    // save to cart whenever the cart changes
+    localStorage.setItem("cart", JSON.stringify(cart))
+  }, [cart]);
 
   const addToCart = (newItem) => {
     setCart((prevCart) => {
@@ -64,7 +69,8 @@ export const AddToCartContextProvider = ({ children }) => {
 
   // Function to calculate the total price of the whole cart
   function getTotalPriceOfCart() {
-    return cart.reduce((total, item) => total + getTotalPriceForItem(item), 0);
+    const total = cart.reduce((total, item) => total + getTotalPriceForItem(item), 0);
+    return Number(total.toFixed(2))
   }
 
   // function to clear cart
