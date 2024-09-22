@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 // layout
 import ProductLayout from "./ProductLayout";
 // component
@@ -108,7 +109,7 @@ function Product() {
               )}
             </div>
             <div className=" mt-6 ">
-              <p>{shortenLengthOfTitleInHomePage(items.title)}</p>
+              <p className="hover:text-lilac"><Link to={`product-details/${items.id}`}>{shortenLengthOfTitleInHomePage(items.title)}</Link></p>
               <p>$ {items.price}</p>
             </div>
           </div>

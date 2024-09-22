@@ -63,9 +63,9 @@ function NavBar() {
         </div>
       </div>
       {isVisible && (
-        <ul className=" md:w-full md:block md:absolute md:bg-white md:top-[5.785rem] md:left-0 sm:absolute sm:w-full sm:bg-white sm:top-16 sm:left-0 ">
+        <ul className=" md:w-full md:block md:absolute md:bg-white md:top-[5.785rem] md:left-0 sm:absolute sm:w-full sm:bg-gray-200 sm:top-16 sm:left-0 ">
           {navSection.map((nav) => (
-            <li key={v4()} className=" md:border-b-2 md:p-4 sm:border-b-2 sm:p-4 ">
+            <li key={v4()} className=" md:border-b-2 md:p-4 sm:border-b-2 sm:border-white sm:p-4 ">
               <NavLink to={nav.link} 
               className={({ isActive }) => (
                 isActive

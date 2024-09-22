@@ -15,6 +15,7 @@ import { shortenLengthOfTitle } from "../../utility/shortenLengthOfTitle";
 import { useDisplayProductIcons } from "../../hooks/useDisplayProductIcons";
 // components
 import ProductModal from "./ProductModal";
+import { Link } from "react-router-dom";
 
 function ProductGrid() {
   const { products, isLoading, error, refetch } = useProducts();
@@ -110,7 +111,7 @@ function ProductGrid() {
             )}
           </div>
           <div className=" mt-6 p-2 sm:text-center ">
-            <p>{shortenLengthOfTitle(items.title)}</p>
+            <p className="hover:text-lilac"><Link to={`/product-details/${items.id}`}>{shortenLengthOfTitle(items.title)}</Link></p>
             <p className=" text-center pt-1 ">${items.price}</p>
           </div>
           {isProductModal === items.id && (

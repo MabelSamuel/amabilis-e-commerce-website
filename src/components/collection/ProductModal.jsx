@@ -29,13 +29,13 @@ const ProductModal = ({ items, closeModal, addToCart, addToWishList, decrementIt
             </div>
             <div className="w-72 flex justify-between">
               <div className="border w-24 h-12 flex items-center">
-                <span className="w-1/4 text-center"
+                <button className="w-1/4 text-center"
                 onClick={()=> decrementItemQuantity(items.id)}
-                >-</span>
+                >-</button>
                 <span className="w-1/2 text-center">{items.quantity}</span>
-                <span className="w-1/4 text-center"
+                <button className="w-1/4 text-center"
                 onClick={()=> incrementItemQuantity(items.id)}
-                >+</span>
+                >+</button>
               </div>
               <button
                 className="bg-black text-white w-32 h-12 hover:bg-lilac"
