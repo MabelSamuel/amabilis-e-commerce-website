@@ -88,7 +88,7 @@ function Contact() {
                 <form onSubmit={handleSubmit(onSubmit)} className='sm:text-sm'>
                     <input type="text" name='name' placeholder='Name*' {...register("name")} className=' bg-transparent w-[44%] border border-white h-10 py-1 px-4 mb-8 mr-8 text-black outline-lilac placeholder:text-black md:w-full sm:w-full ' />
                     {errors.name && (
-                        <p className='bg-red-500'>{errors.message.message}</p>
+                        <p className='bg-red-500'>{errors.name.message}</p>
                     )}
                     <input type="email" name='email' placeholder='Email*' { ...register('email') } className=' bg-transparent w-[45%] border border-white h-10 py-1 px-4 mb-8 ml-8 text-black  outline-lilac placeholder:text-black md:ml-0 md:w-full sm:w-full sm:ml-0 '/>
                     {errors.email && (
@@ -100,7 +100,7 @@ function Contact() {
                     )}
                     <textarea name="message" placeholder='Your message*' { ...register('message') } className=' w-full h-64 bg-transparent border border-white py-1 px-4 outline-lilac placeholder:text-black md:pt-4 sm:pt-4 ' ></textarea>
                     {errors.message && (
-                        <p className='bg-red-500'>{errors.name.message}</p>
+                        <p className='bg-red-500'>{errors.message.message}</p>
                     )}
                     <button type='submit' className=' block bg-black text-white w-28 h-8 mt-8 rounded hover:bg-lilac '> SEND</button>
                 </form>
