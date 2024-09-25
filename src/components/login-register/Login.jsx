@@ -5,8 +5,8 @@ import Button from "./Button";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidations } from "../../validations/loginValidations";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../../firebase";
+import { collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
+import { auth, db } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useAuth } from "../../context/AuthContext";
 
@@ -29,31 +29,42 @@ function Login() {
     const { username, password, rememberMe } = data;
 
     try {
-      const userDoc = await getDoc(doc(db, "users", username));
-      if (userDoc.exists()) {
-        const userData = userDoc.data();
-        const email = userData.email;
+      // Query Firestore for user with matching username
+    const userQuery = query(collection(db, "users"), where("username", "==", username));
+    const querySnapshot = await getDocs(userQuery);
 
-        await signInWithEmailAndPassword(auth, email, password);
+    if (!querySnapshot.empty) {
+      const userDoc = querySnapshot.docs[0]; // Get the first document if username matches
+      const userData = userDoc.data();
+      const email = userData.email;
 
-        const user = { uid: userData.uid, email, username: userData.username };
+      // Sign in the user with the retrieved email and password
+      await signInWithEmailAndPassword(auth, email, password);
 
-        if (rememberMe) {
-          localStorage.setItem("user", JSON.stringify(user));
-        } else {
-          sessionStorage.setItem("user", JSON.stringify(user));
-        }
+      const user = { uid: userData.uid, email: userData.email, username: userData.username };
 
-        login(user);
-        // set is logged in to true
-        setIsLoggedIn(true);
+      if (rememberMe) {
+        localStorage.setItem("user", JSON.stringify(user));
+      } else {
+        sessionStorage.setItem("user", JSON.stringify(user));
+      }
 
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      login(user);
+      setIsLoggedIn(true);
 
-        await setDoc(doc(db, "carts", user.uid), {
-          cartItems: cart,
-          updatedAt: new Date(),
-        });
+      // Retrieve and save the cart to Firestore
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      await setDoc(doc(db, "carts", user.uid), {
+        cartItems: cart,
+        updatedAt: new Date(),
+      });
+
+      // Load cart from Firestore and store it in localStorage
+      const cartDoc = await getDoc(doc(db, 'carts', user.uid));
+      if (cartDoc.exists()) {
+          const loadedCart = cartDoc.data().cartItems || [];
+          localStorage.setItem('cart', JSON.stringify(loadedCart));
+      }
         navigate("/checkout");
       } else {
         setError("user not found");

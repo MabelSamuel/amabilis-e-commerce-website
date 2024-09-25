@@ -11,7 +11,7 @@ import { useAuth } from "../../context/AuthContext";
 
 function Icons() {
   const [isOpen, setIsOpen] = useState(null);
-  const { isLoggedIn } = useAuth;
+  const { isLoggedIn, user, logout } = useAuth();
 
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
@@ -30,6 +30,12 @@ function Icons() {
 
   const handleDropdownClick = (e) => {
     e.stopPropagation();
+  };
+
+  const handleLogout = () => {
+    logout(); 
+    setIsOpen(null);
+    navigate("/"); 
   };
 
   return (
@@ -72,11 +78,9 @@ function Icons() {
             onClick={() => handleDropDown("contact")}
           />
         ) : (
-          <NavLink to="/my-account">
-            <div className="size-6 rounded-full"></div>
-          </NavLink>
+            <div className="flex items-center justify-center w-6 h-6 border-black border text-black rounded-full relative " onClick={()=> handleDropDown("my-account")}>{user?.username?.charAt(0).toUpperCase()}</div>
         )}
-        {isOpen === "contact" && (
+        {isOpen === "contact" && !isLoggedIn && (
           <div className=" absolute bg-white shadow-md pt-2 px-3 pb-3 text-left w-32 z-50 transition-all duration-300 ease-in flex items-center top-[5.75rem] sm:top-[4.2rem] sm:right-0 ">
             <ul className="text-sm *:mb-2">
               <li className="hover:text-lilac ">
@@ -100,6 +104,26 @@ function Icons() {
                 >
                   Register
                 </NavLink>{" "}
+              </li>
+            </ul>
+          </div>
+        )}
+        {isOpen === "my-account" && isLoggedIn && (
+          <div className="absolute bg-white shadow-md pt-2 px-3 pb-3 text-left w-32 z-50 transition-all duration-300 ease-in flex items-center top-[5.75rem] sm:top-[4.2rem] sm:right-0">
+            <ul className="text-sm *:mb-2">
+            <li className="hover:text-lilac ">
+                {" "}
+                <NavLink
+                  to="/my-account"
+                  className={({ isActive }) =>
+                    isActive ? "text-lilac" : "text-black"
+                  }
+                >
+                  My Account
+                </NavLink>{" "}
+              </li>
+              <li className="hover:text-lilac " onClick={handleLogout}>
+                Log Out
               </li>
             </ul>
           </div>
