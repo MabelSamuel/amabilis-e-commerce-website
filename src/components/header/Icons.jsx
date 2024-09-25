@@ -7,9 +7,11 @@ import { CiHeart } from "react-icons/ci";
 import { RiShoppingBag2Line } from "react-icons/ri";
 // context
 import { AddToCartContext } from "../../context/AddToCartContext";
+import { useAuth } from "../../context/AuthContext";
 
 function Icons() {
   const [isOpen, setIsOpen] = useState(null);
+  const { isLoggedIn } = useAuth;
 
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
@@ -62,12 +64,18 @@ function Icons() {
           </div>
         )}
       </li>
-      <li onClick={() => handleDropDown("contact")}>
-        {" "}
-        <IoIosContact
-          size={25}
-          className=" hover:stroke-lilac stroke-1 relative "
-        />{" "}
+      <li>
+        {!isLoggedIn ? (
+          <IoIosContact
+            size={25}
+            className=" hover:stroke-lilac stroke-1 relative "
+            onClick={() => handleDropDown("contact")}
+          />
+        ) : (
+          <NavLink to="/my-account">
+            <div className="size-6 rounded-full"></div>
+          </NavLink>
+        )}
         {isOpen === "contact" && (
           <div className=" absolute bg-white shadow-md pt-2 px-3 pb-3 text-left w-32 z-50 transition-all duration-300 ease-in flex items-center top-[5.75rem] sm:top-[4.2rem] sm:right-0 ">
             <ul className="text-sm *:mb-2">
@@ -91,17 +99,6 @@ function Icons() {
                   }
                 >
                   Register
-                </NavLink>{" "}
-              </li>
-              <li className="hover:text-lilac ">
-                {" "}
-                <NavLink
-                  to=""
-                  className={({ isActive }) =>
-                    isActive ? "text-lilac" : "text-black"
-                  }
-                >
-                  My Account
                 </NavLink>{" "}
               </li>
             </ul>

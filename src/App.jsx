@@ -1,5 +1,5 @@
 import React from 'react';
-import { createHashRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom';
+import { createHashRouter, createRoutesFromElements, Navigate, Route, RouterProvider } from 'react-router-dom';
 // layout 
 import Root from './layouts/Root';
 // pages
@@ -18,13 +18,14 @@ import AboutPage from './pages/AboutPage';
 import CheckOutPage from './pages/CheckOutPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
+import ProtectedRoute from './components/checkout/ProtectedRoute';
 
 const router = createHashRouter(
   createRoutesFromElements(
     <Route path='/' element = { <Root /> } >
       <Route index element = {<HomePage/>} />
       <Route path='collection' element={ <CollectionPage/> }>
-        <Route index element={<ProductGrid/> } />
+        <Route index element={<Navigate to="grid"/> } />
         <Route path='grid' element={<ProductGrid/>} />
         <Route path='list' element={ <ProductList/>}  />
       </Route>
@@ -33,11 +34,11 @@ const router = createHashRouter(
       <Route path='wishlist' element={ <WishListPage /> } />
       <Route path='cart' element={ <CartPage/> } />
       <Route path='login-register' element={ <LoginAndRegisterPage/> }>
-        <Route index element = { <Login/> }/>
+        <Route index element = { <Navigate to="login"/> }/>
         <Route path='login' element= { <Login/> } />
         <Route path='register' element= { <Register/> } />
       </Route>
-      <Route path='checkout' element={<CheckOutPage/>}/>
+      <Route path='checkout' element={<ProtectedRoute><CheckOutPage/></ProtectedRoute>}/>
       <Route path='/search' element={<SearchResultsPage/>} />
       <Route path='product-details/:id' element={<ProductDetailsPage/>} />
       <Route path='*' element={<NotFoundPage/>} />

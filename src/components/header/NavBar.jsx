@@ -22,7 +22,7 @@ function NavBar() {
     },
     {
       title: "Collection",
-      link: "/collection/grid",
+      link: "/collection",
     },
     {
       title: "About",
