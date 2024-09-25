@@ -34,7 +34,8 @@ function Login() {
     const querySnapshot = await getDocs(userQuery);
 
     if (!querySnapshot.empty) {
-      const userDoc = querySnapshot.docs[0]; // Get the first document if username matches
+      const userDoc = querySnapshot.docs[0]; 
+      // Get the first document if username matches
       const userData = userDoc.data();
       const email = userData.email;
 
