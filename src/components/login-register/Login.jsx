@@ -7,8 +7,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidations } from "../../validations/loginValidations";
 import { collection, doc, getDoc, getDocs, query, setDoc, where } from "firebase/firestore";
 import { auth, db } from "../../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword} from "firebase/auth";
 import { useAuth } from "../../context/AuthContext";
+import { GrStatusGood } from "react-icons/gr";
+import { TiCancel } from "react-icons/ti";
 
 function Login() {
   const navigate = useNavigate();
@@ -24,6 +26,7 @@ function Login() {
   });
 
   const [error, setError] = useState(null);
+  const [loginMessage, setLoginMessage] = useState(null);
 
   const onSubmit = async (data) => {
     const { username, password, rememberMe } = data;
@@ -66,12 +69,17 @@ function Login() {
           const loadedCart = cartDoc.data().cartItems || [];
           localStorage.setItem('cart', JSON.stringify(loadedCart));
       }
+        setLoginMessage("Login successful");
+        setTimeout(() => setLoginMessage(""), 3000);
         navigate("/checkout");
       } else {
         setError("user not found");
       }
     } catch (error) {
       setError(error.message);
+      setTimeout(() => {
+        setError("")
+      }, 3000);
       console.error("Error logging in", error);
     }
 
@@ -88,7 +96,18 @@ function Login() {
       onSubmit={handleSubmit(onSubmit)}
       className=" border h-full w-[70%] shadow-md p-20 md:w-full md:p-20 sm:w-full sm:py-10 sm:px-4 "
     >
-      {error && <p className="bg-red-500">{error}</p>}
+      {loginMessage && (
+        <div className="fixed top-12 left-1/2 transform -translate-x-1/2 px-4 py-2 w-fit rounded shadow-lg z-[57] flex justify-center items-center gap-2 border-gray-500 text-white bg-lilac sm:w-full ">
+          <GrStatusGood className="text-white" />
+          <p>{loginMessage}</p>
+        </div>
+      )}
+      {error && (
+        <div className="fixed top-12 left-1/2 transform -translate-x-1/2 px-4 py-2 w-fit rounded shadow-lg z-[57] flex justify-center items-center gap-2 border-gray-500 text-white bg-red-400 sm:w-full ">
+          <TiCancel className="text-white" />
+          <p>{error}</p>
+        </div>
+      )}
       <div className=" mb-8 ">
         <Input
           type={"text"}
@@ -126,6 +145,7 @@ function Login() {
       </div>
 
       <Button name={"LOGIN"} />
+      
     </form>
   );
 }

@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) =>{
     const logout = async() => {
         await auth.signOut();
         setUser(null);
-        setIsLoggedIn(false)
+        setIsLoggedIn(false);
     };
     return (
         <AuthContext.Provider value={{user, login, logout, isLoggedIn, setIsLoggedIn}}>

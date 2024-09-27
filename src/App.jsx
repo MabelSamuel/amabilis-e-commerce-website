@@ -19,6 +19,7 @@ import CheckOutPage from './pages/CheckOutPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import ProtectedRoute from './components/checkout/ProtectedRoute';
+import MyAccountPage from './pages/MyAccountPage';
 
 const router = createHashRouter(
   createRoutesFromElements(
@@ -41,6 +42,7 @@ const router = createHashRouter(
       <Route path='checkout' element={<ProtectedRoute><CheckOutPage/></ProtectedRoute>}/>
       <Route path='/search' element={<SearchResultsPage/>} />
       <Route path='product-details/:id' element={<ProductDetailsPage/>} />
+      <Route path='my-account' element={<ProtectedRoute><MyAccountPage/></ProtectedRoute>}/>
       <Route path='*' element={<NotFoundPage/>} />
     </Route>
   )

@@ -8,6 +8,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { doc, setDoc } from 'firebase/firestore';
+import { GrStatusGood } from 'react-icons/gr';
+import { TiCancel } from 'react-icons/ti';
 
 function Register() {
     const navigate = useNavigate()
@@ -21,6 +23,7 @@ function Register() {
     });
     
     const [ error, setError ] = useState(null);
+    const [registerMessage, setRegisterMessage] = useState(null);
 
     const onSubmit = async (data) =>{
         const { email, password, username } = data;
@@ -35,6 +38,9 @@ function Register() {
                 createdAt: new Date()
             })
             console.log(user);
+            setRegisterMessage("Registered successfully")
+            setTimeout(()=> setRegisterMessage("Please login"), 1000)
+            setTimeout(()=> setRegisterMessage(""), 3000)
             navigate("/login-register/login")
         } catch (error) {
             setError(error.message);
@@ -51,7 +57,18 @@ function Register() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className=' border h-full w-[70%] shadow-md p-20 md:w-full md:p-20 sm:w-full sm:py-10 sm:px-4 ' >
-        {error && <p className='bg-red-500'>{error}</p>}
+        {registerMessage && (
+        <div className="fixed top-12 left-1/2 transform -translate-x-1/2 px-4 py-2 w-fit rounded shadow-lg z-[57] flex justify-center items-center gap-2 border-gray-500 text-white bg-lilac sm:w-full ">
+          <GrStatusGood className="text-white" />
+          <p>{registerMessage}</p>
+        </div>
+      )}
+        {error && (
+        <div className="fixed top-12 left-1/2 transform -translate-x-1/2 px-4 py-2 w-fit rounded shadow-lg z-[57] flex justify-center items-center gap-2 border-gray-500 text-white bg-red-400 sm:w-full ">
+          <TiCancel className="text-white" />
+          <p>{error}</p>
+        </div>
+      )}
         <div className=' mb-8 '>
             <Input type={'text'} placeholder={'Username'} name={'username'} register={register} />
             { errors.username && (

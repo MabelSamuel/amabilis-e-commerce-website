@@ -77,8 +77,8 @@ function Collection() {
 
   return (
     <div className=' flex py-16 px-12 gap-8 md:flex-col-reverse md:px-4 sm:flex-col-reverse sm:px-4 '>
-        <SideBar handleCategoryChange={handleCategoryChange} handleSearchInput={handleSearchInput} handleMaxPriceFilter={handleMaxPriceFilter} maxPrice={maxPrice} handleSearchClear={handleSearchClear}/>
-        <ProductCollection filteredProducts={filteredProducts} handleSortOrder={handleSortOrder} filteredProductsLength={filteredProductsLength}/>
+        <SideBar handleCategoryChange={handleCategoryChange} handleSearchInput={handleSearchInput} handleMaxPriceFilter={handleMaxPriceFilter} maxPrice={maxPrice} handleSearchClear={handleSearchClear} search={search}/>
+        <ProductCollection filteredProducts={filteredProducts} handleSortOrder={handleSortOrder} filteredProductsLength={filteredProductsLength} />
     </div>
   )
 }

@@ -94,7 +94,8 @@ export const AddToCartContextProvider = ({ children }) => {
         getTotalPriceForItem,
         getTotalPriceOfCart,
         clearCart,
-        cartMessage
+        cartMessage,
+        setCartMessage
       }}
     >
       {children}

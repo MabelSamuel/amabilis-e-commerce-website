@@ -1,8 +1,8 @@
 import React from "react";
-import { IoIosSearch } from "react-icons/io";
+import { MdOutlineClear } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-function SideBar({ handleCategoryChange, handleSearchInput, maxPrice, handleMaxPriceFilter, handleSearchClear }) {
+function SideBar({ handleCategoryChange, handleSearchInput, maxPrice, handleMaxPriceFilter, handleSearchClear, search }) {
   return (
     <div className=" px-4 py-6 rounded-lg border w-1/4 md:w-full sm:w-full ">
       <div className=" mr-8 ">
@@ -11,12 +11,13 @@ function SideBar({ handleCategoryChange, handleSearchInput, maxPrice, handleMaxP
           <input
             type="text"
             placeholder="Search here..."
+            value={search}
             className=" bg-none bg-repeat bg-scroll bg-transparent bg-[0%] border border-solid border-gray-500 text-black h-11 py-1 pr-14 pl-5 w-full outline-lilac  "
             onChange={handleSearchInput}
           />
           <button className=" bg-none bg-repeat bg-scroll bg-transparent bg-[0%] border-gray-500 px-4 border-l absolute right-0 top-1/4  text-xl " onClick={handleSearchClear}>
             {" "}
-            <IoIosSearch />{" "}
+            <MdOutlineClear />{" "}
           </button>
         </form>
 
