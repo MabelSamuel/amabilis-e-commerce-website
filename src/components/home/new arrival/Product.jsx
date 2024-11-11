@@ -109,7 +109,7 @@ function Product() {
               )}
             </div>
             <div className=" mt-6 ">
-              <p className="hover:text-lilac"><Link to={`product-details/${items.id}`}>{shortenLengthOfTitleInHomePage(items.title)}</Link></p>
+              <p className="hover:text-lilac relative group"><Link to={`product-details/${items.id}`}>{shortenLengthOfTitleInHomePage(items.title)}</Link><span className="absolute top-full left-1/2 -ml-[7.125rem] hidden group-hover:inline-block w-full bg-lilac text-white text-center py-1 rounded-lg z-10 after:content-[''] after:absolute after:bottom-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-solid after:border-b-lilac after:border-x-transparent">{items.title}</span></p>
               <p>$ {items.price}</p>
             </div>
           </div>

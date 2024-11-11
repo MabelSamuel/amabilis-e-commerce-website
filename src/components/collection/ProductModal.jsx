@@ -5,8 +5,8 @@ import { IoStarSharp } from "react-icons/io5";
 
 const ProductModal = ({ items, closeModal, addToCart, addToWishList, decrementItemQuantity, incrementItemQuantity }) => {
   return (
-    <div className="fixed top-0 left-0 inset-0 bg-black bg-opacity-75 z-[53] flex justify-center items-start overflow-y-auto">
-      <div className="w-[70%] bg-white rounded-lg my-20 max-h-screen sm:w-full sm:max-h-full overflow-y-auto">
+    <div className="fixed top-0 left-0 inset-0 bg-black bg-opacity-75 z-[53] flex justify-center items-start overflow-y-auto" onClick={closeModal}>
+      <div className="w-[70%] bg-white rounded-lg my-20 max-h-screen sm:w-full sm:max-h-full overflow-y-auto" onClick={(e)=> e.stopPropagation()}>
         <div className="flex flex-row-reverse border-b-2 p-2">
           <IoMdClose size={27} className="text-dark-gray hover:text-black" onClick={closeModal} />
         </div>

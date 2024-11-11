@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react'
 import SideBar from './SideBar'
 import ProductCollection from './ProductCollection'
 import { useProducts } from '../../hooks/useProducts';
+import useDebounce from '../../hooks/useDebounce';
 
 function Collection() {
   const [category, setCategory] = useState("all");
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("");
   const [maxPrice, setMaxPrice] = useState(1000);
-  const [filteredProductsLength ,setFilteredProductsLength] = useState(20)
+  const [filteredProductsLength ,setFilteredProductsLength] = useState(20);
+
+  const debouncedSearch = useDebounce(search, 1000)
 
   const handleCategoryChange = (e) =>{
     setCategory(e.target.textContent.toLowerCase());
@@ -33,7 +36,7 @@ function Collection() {
 
   const filteredProducts = products?.filter((product)=>{
     const matchedCategory = category === "all" || product.category.toLowerCase() === category;
-    const matchedSearchInput = product.title.toLowerCase().includes(search);
+    const matchedSearchInput = product.title.toLowerCase().includes(debouncedSearch);
     const matchedMaxPrice = product.price <= maxPrice;
 
     return matchedCategory && matchedSearchInput && matchedMaxPrice;

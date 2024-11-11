@@ -5,11 +5,13 @@ import Header from '../components/header/Header';
 import { AddToCartContext } from "../context/AddToCartContext";
 import { GrStatusGood } from "react-icons/gr";
 import { WishListContext } from "../context/WishListContext";
+import { ScrollToTop } from '../components/scroll-to-top/ScrollToTop';
 
 function Root() {
   const { cartMessage } = useContext(AddToCartContext);
   const { wishListMessage } = useContext(WishListContext);
   return (
+    <ScrollToTop>
     <div className='min-h-fit'>
       <Header />
       <main>
@@ -29,6 +31,7 @@ function Root() {
       </main>
       <Footer />
     </div>
+    </ScrollToTop>
   )
 }
 

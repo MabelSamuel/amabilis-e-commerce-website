@@ -116,10 +116,10 @@ function ProductGrid() {
               )}
             </div>
             <div className=" mt-6 p-2 sm:text-center ">
-              <p className="hover:text-lilac">
+              <p className="hover:text-lilac relative group">
                 <Link to={`/product-details/${items.id}`}>
                   {shortenLengthOfTitle(items.title)}
-                </Link>
+                </Link><span className="absolute top-full left-1/2 -ml-[7.125rem] hidden group-hover:inline-block w-full bg-lilac text-white text-center py-1 rounded-lg z-10 after:content-[''] after:absolute after:bottom-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-solid after:border-b-lilac after:border-x-transparent">{items.title}</span>
               </p>
               <p className=" text-center pt-1 ">${items.price}</p>
             </div>
